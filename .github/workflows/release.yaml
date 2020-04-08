@@ -18,11 +18,11 @@ jobs:
         id: prerelease 
         run: |
           echo $PATH
-          wget -q https://github.com/fsaintjacques/semver-tool/archive/3.0.0.zip
-          unzip -p 3.0.0.zip semver-tool-3.0.0/src/semver > $HOME/bin/semver && rm -f 3.0.0.zip
-          # chmod +x $HOME/bin/semver
-          echo $($HOME/bin/semver get prerel ${GITHUB_REF/refs\/tags\//})
-          if [[ $($HOME/bin/semver get prerel ${GITHUB_REF/refs\/tags\//}) ]]; then 
+          wget -q -P /tmp https://github.com/fsaintjacques/semver-tool/archive/3.0.0.zip
+          unzip /tmp/3.0.0.zip && mv /tmp/semver-tool-3.0.0/src/semver /usr/local/bin
+          # chmod +x /usr/local/bin/semver
+          echo $(semver get prerel ${GITHUB_REF/refs\/tags\//})
+          if [[ $(semver get prerel ${GITHUB_REF/refs\/tags\//}) ]]; then 
             echo "::set-output name=IS_PRE::true" 
           else
             echo "::set-output name=IS_PRE::false"
