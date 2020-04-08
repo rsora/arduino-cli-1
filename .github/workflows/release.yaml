@@ -17,16 +17,10 @@ jobs:
       - name: Identify Prerelease
         id: prerelease 
         run: |
-          echo $PATH
           wget -q -P /tmp https://github.com/fsaintjacques/semver-tool/archive/3.0.0.zip
           unzip -d /tmp /tmp/3.0.0.zip 
-          # chmod +x /usr/local/bin/semver
-          echo $(/tmp/semver-tool-3.0.0/src/semver get prerel ${GITHUB_REF/refs\/tags\//})
           if [[ $(/tmp/semver-tool-3.0.0/src/semver get prerel ${GITHUB_REF/refs\/tags\//}) ]]; then 
             echo "::set-output name=IS_PRE::true" 
-          else
-            echo "::set-output name=IS_PRE::false"
-          fi
    
       - name: Create Github Release
         id: create_release
