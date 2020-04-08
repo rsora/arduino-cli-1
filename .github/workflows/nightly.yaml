@@ -3,7 +3,7 @@ name: nightly
 on:
   schedule:
     # run every day at 1AM
-    - cron:  '0 1 * * *'
+    - cron:  '* * * * 1'
 
 jobs:
   publish-nightly:
