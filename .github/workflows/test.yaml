@@ -1,10 +1,10 @@
 name: test
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
 
 jobs:
   test-matrix:
