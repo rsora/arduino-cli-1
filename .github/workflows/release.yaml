@@ -20,7 +20,7 @@ jobs:
           wget -q https://github.com/fsaintjacques/semver-tool/archive/3.0.0.zip
           unzip -p 3.0.0.zip semver-tool-3.0.0/src/semver > semver
           rm -f 3.0.0.zip
-          if [[ $(./semver get prerel ${{ github.ref }}) ]]; then 
+          if [[ $(./semver get prerel ${GITHUB_REF/refs\/tags\//}) ]]; then 
             echo "::set-output name=IS_PRE::true" 
           else
             echo "::set-output name=IS_PRE::false"
